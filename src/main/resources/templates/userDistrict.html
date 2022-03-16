@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Reps</title>
+    <title>User's District</title>
 </head>
 <body>
     <h1>User Reps</h1>
-    <p th:text="${address}"></p>
-
+    <h3>Address</h3>
+        <p th:text="${streetAddress}"></p>
+        <p th:text="${zipCode}"></p>
+    <h3>District Code
+        <p th:text="${districtCode}"></p>
+    </h3>
 
 </body>
 </html>
