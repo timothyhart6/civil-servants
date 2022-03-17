@@ -5,13 +5,10 @@
     <title>User's District</title>
 </head>
 <body>
-    <h1>User Reps</h1>
-    <h3>Address</h3>
-        <p th:text="${streetAddress}"></p>
-        <p th:text="${zipCode}"></p>
-    <h3>District Code
-        <p th:text="${districtCode}"></p>
-    </h3>
-
+    <h1>User's District</h1>
+    <h3>State</h3>
+        <p th:text="${userDistrict.getState()}"></p>
+    <h3>District Code</h3>
+        <p th:text="${userDistrict.getDistrictCode()}"></p>
 </body>
 </html>
