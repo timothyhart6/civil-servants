@@ -6,9 +6,15 @@
 </head>
 <body>
     <h1>User's District</h1>
+    <h3>Street Address</h3>
+    <p th:text="${district.getStreetAddress()}"></p>
+    <h3>City</h3>
+    <p th:text="${district.getCity()}"></p>
     <h3>State</h3>
-        <p th:text="${userDistrict.getState()}"></p>
+    <p th:text="${district.getState()}"></p>
+    <h3>Zip Code</h3>
+    <p th:text="${district.getZipCode()}"></p>
     <h3>District Code</h3>
-        <p th:text="${userDistrict.getDistrictCode()}"></p>
+    <p th:text="${district.getDistrictCode()}"></p>
 </body>
 </html>
