@@ -1,4 +1,4 @@
-package com.civilservants.model.google;
+package com.civilservants.model.api.google;
 
 import java.util.ArrayList;
 

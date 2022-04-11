@@ -1,4 +1,4 @@
-package com.civilservants.model.google;
+package com.civilservants.model.api.google;
 
 // import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1
 // import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
