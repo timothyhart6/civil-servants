@@ -1,6 +1,4 @@
-package com.civilservants.model.google;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.civilservants.model.api.google;
 
 import java.util.ArrayList;
 
