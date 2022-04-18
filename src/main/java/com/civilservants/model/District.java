@@ -1,5 +1,6 @@
 package com.civilservants.model;
 
+import com.civilservants.service.ApiCaller;
 import com.civilservants.service.GoogleApiCalls;
 
 import java.util.ArrayList;
@@ -15,9 +16,13 @@ public class District {
     }
 
     public void buildDistrict(String streetAddress, String zipCode){
+        ArrayList<Object> apiObjects = ApiCaller.apiCallsForDistrict(streetAddress, zipCode);
+//        this.houseMember = RepresentativeBuilder.buildHouseMember(apiObjects);
+        //TODO consolidate address object like houseMember
         GoogleApiCalls googleApiCalls = new GoogleApiCalls();
         ArrayList<String> googleAddressAndDistrictInfo = googleApiCalls.fetchAddressAndDistrictInfo(streetAddress, zipCode);
         this.addressAndDistrictInfo = new AddressAndDistrictInfo(streetAddress, googleAddressAndDistrictInfo.get(1), googleAddressAndDistrictInfo.get(2), zipCode, googleAddressAndDistrictInfo.get(4));
+
         this.houseMember = googleApiCalls.FetchHouseMember(streetAddress, zipCode);
     }
 
