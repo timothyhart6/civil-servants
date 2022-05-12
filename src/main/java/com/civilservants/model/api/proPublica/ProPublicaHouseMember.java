@@ -1,10 +1,6 @@
 package com.civilservants.model.api.proPublica;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-public class HouseMember {
+public class ProPublicaHouseMember {
 
     private String id;
     private String name;

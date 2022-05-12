@@ -6,7 +6,7 @@ import java.util.List;
 public class PropublicaHouseMembers {
     private String status;
     private String copyright;
-    private List<HouseMember> results = new ArrayList<>();
+    private List<ProPublicaHouseMember> results = new ArrayList<>();
 
     public String getStatus() {
         return status;
@@ -24,11 +24,11 @@ public class PropublicaHouseMembers {
         this.copyright = copyright;
     }
 
-    public List<HouseMember> getResults() {
+    public List<ProPublicaHouseMember> getResults() {
         return results;
     }
 
-    public void setResults(List<HouseMember> results) {
+    public void setResults(List<ProPublicaHouseMember> results) {
         this.results = results;
     }
 }
