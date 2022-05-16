@@ -1,131 +1,54 @@
 package com.civilservants.model.api.proPublica;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@JsonSerialize
 public class ProPublicaHouseMember {
 
     private String id;
     private String name;
+
+    @JsonProperty(value = "first_name")
     private String firstName;
-    private Object middleName;
+
+    @JsonProperty(value = "middle_name")
+    private String middleName;
+
+    @JsonProperty(value = "last_name")
     private String lastName;
-    private Object suffix;
+
+    private String suffix;
     private String role;
     private String gender;
     private String party;
+
+    @JsonProperty(value = "times_topics_url")
     private String timesTopicsUrl;
+
+    @JsonProperty(value = "twitter_id")
     private String twitterId;
-    private Object facebookAccount;
-    private Object youtubeId;
+
+    @JsonProperty(value = "facebook_account")
+    private String facebookAccount;
+
+    @JsonProperty(value = "youtube_id")
+    private String youtubeId;
+
     private String seniority;
+
+    @JsonProperty(value = "next_election")
     private String nextElection;
+
+    @JsonProperty(value = "api_uri")
     private String apiUri;
+
     private String district;
+
+    @JsonProperty(value = "at_large")
     private Boolean atLarge;
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public Object getMiddleName() {
-        return middleName;
-    }
-    public void setMiddleName(Object middleName) {
-        this.middleName = middleName;
-    }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public Object getSuffix() {
-        return suffix;
-    }
-    public void setSuffix(Object suffix) {
-        this.suffix = suffix;
-    }
-    public String getRole() {
-        return role;
-    }
-    public void setRole(String role) {
-        this.role = role;
-    }
-    public String getGender() {
-        return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-    public String getParty() {
-        return party;
-    }
-    public void setParty(String party) {
-        this.party = party;
-    }
-    public String getTimesTopicsUrl() {
-        return timesTopicsUrl;
-    }
-    public void setTimesTopicsUrl(String timesTopicsUrl) {
-        this.timesTopicsUrl = timesTopicsUrl;
-    }
-    public String getTwitterId() {
-        return twitterId;
-    }
-    public void setTwitterId(String twitterId) {
-        this.twitterId = twitterId;
-    }
-    public Object getFacebookAccount() {
-        return facebookAccount;
-    }
-    public void setFacebookAccount(Object facebookAccount) {
-        this.facebookAccount = facebookAccount;
-    }
-    public Object getYoutubeId() {
-        return youtubeId;
-    }
-    public void setYoutubeId(Object youtubeId) {
-        this.youtubeId = youtubeId;
-    }
-    public String getSeniority() {
-        return seniority;
-    }
-    public void setSeniority(String seniority) {
-        this.seniority = seniority;
-    }
-    public String getNextElection() {
-        return nextElection;
-    }
-    public void setNextElection(String nextElection) {
-        this.nextElection = nextElection;
-    }
-    public String getApiUri() {
-        return apiUri;
-    }
-    public void setApiUri(String apiUri) {
-        this.apiUri = apiUri;
-    }
-    public String getDistrict() {
-        return district;
-    }
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-    public Boolean getAtLarge() {
-        return atLarge;
-    }
-    public void setAtLarge(Boolean atLarge) {
-        this.atLarge = atLarge;
-    }
 }

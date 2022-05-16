@@ -18,15 +18,13 @@ public class ProPublicaApiCalls {
 
     }
 
-    public ProPublicaHouseMember getPropublicaApiRepresentativesModel(String address, String zipCode) {
-        String proPublicaRepresentativesUrl = "https://api.propublica.org/congress/v1/members/house/OH/15/current.json";
-        //Set the headers you need send
+    public ProPublicaHouseMember getPropublicaApiRepresentativesModel(String state, String districtCode) {
+        String proPublicaRepresentativesUrl = "https://api.propublica.org/congress/v1/members/house/" + state + "/" + districtCode + "/current.json";
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-API-Key", PROPUBLICA_API);
-        //Create a new HttpEntity
         final HttpEntity<String> entity = new HttpEntity<String>(headers);
-        //Execute the method writing your HttpEntity to the request
         RestTemplate restTemplate = new RestTemplate();
+
         ResponseEntity<PropublicaHouseMembers> response = restTemplate.exchange(proPublicaRepresentativesUrl, HttpMethod.GET, entity, PropublicaHouseMembers.class);
         return response.getBody().getResults().get(0);
     }

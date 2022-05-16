@@ -1,8 +1,10 @@
 package com.civilservants.model.api.proPublica;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.ArrayList;
 import java.util.List;
-
 public class PropublicaHouseMembers {
     private String status;
     private String copyright;

@@ -41,7 +41,7 @@ public class District {
 
     public void fetchProPublicaHouseMember(){
         ProPublicaApiCalls proPublicaApiCalls = new ProPublicaApiCalls();
-        ProPublicaHouseMember proPublicaHouseMember = proPublicaApiCalls.getPropublicaApiRepresentativesModel(addressAndDistrictInfo.getStreetAddress(), addressAndDistrictInfo.getZipCode());
+        ProPublicaHouseMember proPublicaHouseMember = proPublicaApiCalls.getPropublicaApiRepresentativesModel(addressAndDistrictInfo.getState(), addressAndDistrictInfo.getDistrictCode());
         houseMember.setRole(proPublicaHouseMember.getRole());
         houseMember.setNextElection(proPublicaHouseMember.getNextElection());
         System.out.println(proPublicaHouseMember);
