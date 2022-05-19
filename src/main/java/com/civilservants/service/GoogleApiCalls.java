@@ -1,31 +1,28 @@
 package com.civilservants.service;
 
-//import com.civilservants.model.com.civilservants.model.google.NormalizedInput;
-//import com.civilservants.model.com.civilservants.model.google.NormalizedInput;
-import com.civilservants.model.HouseMember;
-//import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
 import com.civilservants.model.api.google.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
+        import java.util.HashMap;
 
 public class GoogleApiCalls {
 
-    public ArrayList<String> fetchAddressAndDistrictInfo(String address, String zipCode){
-        //TODO Change addressAndDistrictInfo to map
-        ArrayList<String> addressAndDistrictInfo = new ArrayList<>();
-        GoogleApiRepresentativesModel googleApiRepresentativesModel = getGoogleApiRepresentativesModel(address, zipCode);
+    public HashMap<String, String> fetchAddress(String streetAddress, String zipCode){
+        HashMap<String, String> address = new HashMap<>();
+        GoogleApiRepresentativesModel googleApiRepresentativesModel = getGoogleApiRepresentativesModel(streetAddress, zipCode);
 
+        address.put("StreetAddress", googleApiRepresentativesModel.normalizedInput.line1);
+        address.put("City", googleApiRepresentativesModel.normalizedInput.city);
+        address.put("State", googleApiRepresentativesModel.normalizedInput.state);
+        address.put("ZipCode", googleApiRepresentativesModel.normalizedInput.zip);
+        return address;
+    }
+
+    public String fetchDistrictCode(String streetAddress, String zipCode) {
+        GoogleApiRepresentativesModel googleApiRepresentativesModel = getGoogleApiRepresentativesModel(streetAddress, zipCode);
         String divisionID = googleApiRepresentativesModel.offices.get(3).divisionId;
         String districtCode = divisionID.substring(divisionID.length() - 2);
-
-        addressAndDistrictInfo.add(googleApiRepresentativesModel.normalizedInput.line1);
-        addressAndDistrictInfo.add(googleApiRepresentativesModel.normalizedInput.city);
-        addressAndDistrictInfo.add(googleApiRepresentativesModel.normalizedInput.state);
-        addressAndDistrictInfo.add(googleApiRepresentativesModel.normalizedInput.zip);
-        addressAndDistrictInfo.add(districtCode);
-
-        return addressAndDistrictInfo;
+        return districtCode;
     }
 
     public GoogleApiRepresentativesModel getGoogleApiRepresentativesModel(String address, String zipCode) {
