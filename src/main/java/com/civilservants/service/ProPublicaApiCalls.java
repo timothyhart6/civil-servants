@@ -23,5 +23,4 @@ public class ProPublicaApiCalls {
         ResponseEntity<PropublicaHouseMembers> response = restTemplate.exchange(proPublicaRepresentativesUrl, HttpMethod.GET, entity, PropublicaHouseMembers.class);
         return response.getBody().getResults().get(0);
     }
-
 }

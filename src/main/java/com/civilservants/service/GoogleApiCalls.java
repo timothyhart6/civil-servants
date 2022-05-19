@@ -1,6 +1,5 @@
 package com.civilservants.service;
 
-//import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
 import com.civilservants.model.api.google.*;
 import org.springframework.web.client.RestTemplate;
 

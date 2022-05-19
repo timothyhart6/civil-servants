@@ -1,6 +1,5 @@
 package com.civilservants.model;
 
-//import com.civilservants.service.ApiCaller;
 import lombok.Getter;
 
 @Getter
