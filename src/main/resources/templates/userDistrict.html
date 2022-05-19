@@ -7,15 +7,15 @@
 <body>
     <h1>User's District</h1>
     <h3>Street Address</h3>
-    <p th:text="${district.addressAndDistrictInfo.getStreetAddress()}"></p>
+    <p th:text="${district.userAddress.getStreetAddress()}"></p>
     <h3>City</h3>
-    <p th:text="${district.addressAndDistrictInfo.getCity()}"></p>
+    <p th:text="${district.userAddress.getCity()}"></p>
     <h3>State</h3>
-    <p th:text="${district.addressAndDistrictInfo.getState()}"></p>
+    <p th:text="${district.userAddress.getState()}"></p>
     <h3>Zip Code</h3>
-    <p th:text="${district.addressAndDistrictInfo.getZipCode()}"></p>
+    <p th:text="${district.userAddress.getZipCode()}"></p>
     <h3>District Code</h3>
-    <p th:text="${district.addressAndDistrictInfo.getDistrictCode()}"></p>
+    <p th:text="${district.districtCode.getDistrictCode()}"></p>
 
     <h3>House Member First Name: </h3>
     <p th:text="${district.houseMember.getFirstName()}"></p>
