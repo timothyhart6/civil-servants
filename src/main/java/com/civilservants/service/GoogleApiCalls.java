@@ -28,7 +28,13 @@ public class GoogleApiCalls {
     public GoogleApiRepresentativesModel getGoogleApiRepresentativesModel(String address, String zipCode) {
         String googleRepresentativesUrl = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCZom8UkHqmSzLcAWfnfL41vOfirikaS3w&address=" + address + zipCode;
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(googleRepresentativesUrl, GoogleApiRepresentativesModel.class);
+        GoogleApiRepresentativesModel googleRep = null;
+        try {
+             googleRep = restTemplate.getForObject(googleRepresentativesUrl, GoogleApiRepresentativesModel.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return googleRep;
     }
 }
 
