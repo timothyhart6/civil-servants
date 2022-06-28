@@ -1,11 +1,9 @@
 package com.civilservants.service;
 
-import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class GoogleApiCallsTest {
 
@@ -27,9 +25,17 @@ public class GoogleApiCallsTest {
     }
 
     @Test
-    public void testGetGoogleApiRepresentativesModelReturnsReps(){
-        GoogleApiRepresentativesModel actual = googleApiCalls.getGoogleApiRepresentativesModel("399851 W 300th Rd", "74022");
-        Assertions.assertFalse(actual.officials.isEmpty());
+    public void testGetGoogleApiRepresentativesModelIsNotNull(){
+        GoogleApiRepresentativesModel repModel = googleApiCalls.getGoogleApiRepresentativesModel("59 spruce st", "43215");
+            Assertions.assertNotNull(repModel);
     }
 
+    @Test
+    public void testGetGoogleApiRepresentativesModelHasCorrectAddressInfo(){
+        GoogleApiRepresentativesModel repModel = googleApiCalls.getGoogleApiRepresentativesModel("946 Diamond St", "94114");
+        Assertions.assertEquals("946 Diamond Street", repModel.normalizedInput.line1);
+        Assertions.assertEquals("San Francisco", repModel.normalizedInput.city);
+        Assertions.assertEquals("CA", repModel.normalizedInput.state);
+        Assertions.assertEquals("94114", repModel.normalizedInput.zip);
+    }
 }
