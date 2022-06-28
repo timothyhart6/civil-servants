@@ -26,4 +26,6 @@ public class UserAddress {
         this.state = googleAddressAndDistrictInfo.get("State");
     }
 
+
+
 }
