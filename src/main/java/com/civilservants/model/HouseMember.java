@@ -16,6 +16,7 @@ public class HouseMember {
     private String firstName;
     private String lastName;
     private String role;
+    private String photoUrl;
     private String nextElection;
 
     public HouseMember(UserAddress userAddress, DistrictCode districtCode) {
@@ -32,6 +33,7 @@ public class HouseMember {
         String lastName = googleApiRepresentativesModel.officials.get(4).name.split(" ")[1];
         this.firstName = firstName;
         this.lastName = lastName;
+        this.photoUrl = googleApiRepresentativesModel.officials.get(4).photoUrl;
     }
 
     public void fetchProPublicaHouseMember(){
@@ -39,5 +41,9 @@ public class HouseMember {
         ProPublicaHouseMember proPublicaHouseMember = proPublicaApiCalls.getPropublicaApiRepresentativesModel(userAddress.getState(), districtCode.getDistrictCode());
         this.role = proPublicaHouseMember.getRole();
         this.nextElection = proPublicaHouseMember.getNextElection();
+    }
+
+    public String titleAndFullName(){
+        return getRole() + " " + getFirstName() + " " + getLastName();
     }
 }

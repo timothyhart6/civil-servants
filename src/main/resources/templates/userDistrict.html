@@ -5,7 +5,68 @@
     <title>User's District</title>
 </head>
 <body>
-    <h1>User's District</h1>
+    <div id="house-member">
+        <div id="heading">
+            <h1>
+                <span th:text="${district.houseMember.titleAndFullName()}"></span>
+                <a th:href="${district.houseMember.getPhotoUrl()}"> need to get photo</a>
+            </h1>
+            <p>User Address and district code</p>
+        </div>
+        <div id="contact-info">
+            <h2>Contact Info</h2>
+            <ul>
+                <li>Phone:</li>
+                <li>Local Office Address: </li>
+                <li>Washington DC Address: </li>
+            </ul>
+        </div>
+        <div id="social-media">
+            <h2>Social Media</h2>
+            <ul>
+                <li>Twitter: </li>
+                <li>Facebook: </li>
+                <li>Instagram: </li>
+                <li>TikTok: </li>
+            </ul>
+        </div>
+        <div id="bill-voting-data">
+            <h2>Bill Voting history</h2>
+            <ul>
+                <li>(Template)Bill Title</li>
+                <li>(Template)Bill Summary</li>
+                <li>(Template)Bill Vote</li>
+                <li>(Template)Bill Vote Explaination</li>
+                <li>(Template)Bill Details (maybe a hyperlink?)</li>
+            </ul>
+        </div>
+        <div id="financing">
+            <h2>Financing</h2>
+            <div id="campaign-financing">
+                <h3>Campaign Financing</h3>
+                <ul>
+                    <li>Total funding raised</li>
+                    <li>Total funding spent</li>
+                    <li>Financial donations breakdown (maybe a graph?)</li>
+                </ul>
+            </div>
+            <div id="office-spending">
+                <h3>Office Spending</h3>
+                <ul>
+                    <li>Total office budget</li>
+                    <li> total spent</li>
+                </ul>
+            </div>
+        </div>
+        <div id="next-election">
+            <h2>Next Election</h2>
+            <ul>
+                <li>Running in next election: </li>
+                <li>Election Date: </li>
+                <li>Your voting location (if voting): </li>
+            </ul>
+        </div>
+    </div>
     <h3>Street Address</h3>
     <p th:text="${district.userAddress.getStreetAddress()}"></p>
     <h3>City</h3>
