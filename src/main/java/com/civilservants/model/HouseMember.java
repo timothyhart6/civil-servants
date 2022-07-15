@@ -1,6 +1,8 @@
 package com.civilservants.model;
 
+import com.civilservants.model.api.google.Address;
 import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
+import com.civilservants.model.api.google.Official;
 import com.civilservants.model.api.proPublica.ProPublicaHouseMember;
 import com.civilservants.service.GoogleApiCalls;
 import com.civilservants.service.ProPublicaApiCalls;
@@ -18,6 +20,9 @@ public class HouseMember {
     private String role;
     private String photoUrl;
     private String nextElection;
+    private String phoneNumber;
+    private Address officeAddress;
+
 
     public HouseMember(UserAddress userAddress, DistrictCode districtCode) {
         this.userAddress = userAddress;
@@ -29,11 +34,14 @@ public class HouseMember {
     public void fetchGoogleHouseMember(){
         GoogleApiCalls googleApiCalls = new GoogleApiCalls();
         GoogleApiRepresentativesModel googleApiRepresentativesModel = googleApiCalls.getGoogleApiRepresentativesModel(userAddress.getStreetAddress(), userAddress.getZipCode());
-        String firstName = googleApiRepresentativesModel.officials.get(4).name.split(" ")[0];
-        String lastName = googleApiRepresentativesModel.officials.get(4).name.split(" ")[1];
+        Official houseMember = googleApiRepresentativesModel.officials.get(4);
+        String firstName = houseMember.name.split(" ")[0];
+        String lastName = houseMember.name.split(" ")[1];
         this.firstName = firstName;
         this.lastName = lastName;
-        this.photoUrl = googleApiRepresentativesModel.officials.get(4).photoUrl;
+        this.photoUrl = houseMember.photoUrl;
+        this.phoneNumber = houseMember.phones.get(0);
+        this.officeAddress = houseMember.address.get(0);
     }
 
     public void fetchProPublicaHouseMember(){
