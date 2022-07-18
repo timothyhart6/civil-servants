@@ -13,6 +13,8 @@ import lombok.Setter;
 @Setter
 public class HouseMember {
 
+    private Official googleHouseMember;
+    private ProPublicaHouseMember proPublicaHouseMember;
     private UserAddress userAddress;
     private DistrictCode districtCode;
     private String firstName;
@@ -22,33 +24,43 @@ public class HouseMember {
     private String nextElection;
     private String phoneNumber;
     private Address officeAddress;
+    private String twitterId;
+    private String facebookId;
+    private String youtubeId;
 
 
     public HouseMember(UserAddress userAddress, DistrictCode districtCode) {
         this.userAddress = userAddress;
         this.districtCode = districtCode;
-        fetchGoogleHouseMember();
+        this.googleHouseMember = fetchGoogleHouseMember();
+        this.proPublicaHouseMember = fetchProPublicaHouseMember();
+
+        this.firstName = googleHouseMember.name.split(" ")[0];
+        this.lastName = googleHouseMember.name.split(" ")[1];
+        this.photoUrl = googleHouseMember.photoUrl;
+        this.phoneNumber = googleHouseMember.phones.get(0);
+        this.officeAddress = googleHouseMember.address.get(0);
+
+        this.role = proPublicaHouseMember.getRole();
+        this.nextElection = proPublicaHouseMember.getNextElection();
+        this.twitterId = proPublicaHouseMember.getTwitterId();
+        this.facebookId = proPublicaHouseMember.getFacebookAccount();
+        this.youtubeId = proPublicaHouseMember.getYoutubeId();
+
         fetchProPublicaHouseMember();
     }
 
-    public void fetchGoogleHouseMember(){
+    public Official fetchGoogleHouseMember(){
         GoogleApiCalls googleApiCalls = new GoogleApiCalls();
         GoogleApiRepresentativesModel googleApiRepresentativesModel = googleApiCalls.getGoogleApiRepresentativesModel(userAddress.getStreetAddress(), userAddress.getZipCode());
         Official houseMember = googleApiRepresentativesModel.officials.get(4);
-        String firstName = houseMember.name.split(" ")[0];
-        String lastName = houseMember.name.split(" ")[1];
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.photoUrl = houseMember.photoUrl;
-        this.phoneNumber = houseMember.phones.get(0);
-        this.officeAddress = houseMember.address.get(0);
+        return houseMember;
     }
 
-    public void fetchProPublicaHouseMember(){
+    public ProPublicaHouseMember fetchProPublicaHouseMember(){
         ProPublicaApiCalls proPublicaApiCalls = new ProPublicaApiCalls();
         ProPublicaHouseMember proPublicaHouseMember = proPublicaApiCalls.getPropublicaApiRepresentativesModel(userAddress.getState(), districtCode.getDistrictCode());
-        this.role = proPublicaHouseMember.getRole();
-        this.nextElection = proPublicaHouseMember.getNextElection();
+        return proPublicaHouseMember;
     }
 
     public String titleAndFullName(){

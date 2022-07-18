@@ -38,10 +38,9 @@
         <div id="social-media">
             <h2>Social Media</h2>
             <ul>
-                <li>Twitter: </li>
-                <li>Facebook: </li>
-                <li>Instagram: </li>
-                <li>TikTok: </li>
+                <li>Twitter: <span th:text="${district.houseMember.getTwitterId()}"></span></li>
+                <li>Facebook: <span th:text="${district.houseMember.getFacebookId()}"></span></li>
+                <li>Youtube: <span th:text="${district.houseMember.getYoutubeId()}"></span></li>
             </ul>
         </div>
         <div id="bill-voting-data">
