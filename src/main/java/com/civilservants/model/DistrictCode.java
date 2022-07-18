@@ -6,14 +6,14 @@ import lombok.Getter;
 @Getter
 public class DistrictCode {
 
-    private String districtCode;
+    private String code;
 
     public DistrictCode(String streetAddress,  String zipCode) {
-        setDistrictCode(streetAddress, zipCode);
+        setCode(streetAddress, zipCode);
     }
 
-    private void setDistrictCode(String streetAddress, String zipCode) {
+    private void setCode(String streetAddress, String zipCode) {
         GoogleApiCalls googleApiCalls = new GoogleApiCalls();
-        this.districtCode = googleApiCalls.fetchDistrictCode(streetAddress, zipCode);
+        this.code = googleApiCalls.fetchDistrictCode(streetAddress, zipCode);
     }
 }
