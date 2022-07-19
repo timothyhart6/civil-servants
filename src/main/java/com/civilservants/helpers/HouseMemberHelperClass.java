@@ -1,6 +1,4 @@
 package com.civilservants.helpers;
-
-import com.civilservants.model.DistrictCode;
 import com.civilservants.model.UserAddress;
 import com.civilservants.model.api.google.Address;
 import com.civilservants.model.api.google.Channel;
@@ -9,7 +7,6 @@ import com.civilservants.model.api.google.Official;
 import com.civilservants.model.api.proPublica.ProPublicaHouseMember;
 import com.civilservants.service.GoogleApiCalls;
 import com.civilservants.service.ProPublicaApiCalls;
-import org.apache.catalina.User;
 
 public class HouseMemberHelperClass {
 
@@ -65,29 +62,41 @@ public class HouseMemberHelperClass {
     }
 
     public String getTwitterId() {
-        for (Channel channel : googleHouseMember.channels) {
-            if(channel.type.equalsIgnoreCase("twitter")) {
-                return channel.id;
-            }
-        }
-        return proPublicaHouseMember.getTwitterId();
+        String[] rankedTwitterIdSources = {getSocialMediaIdFromGoogle("twitter"), proPublicaHouseMember.getTwitterId()};
+        return bestAvailableSocialMediaId(rankedTwitterIdSources);
     }
 
+
     public String getFacebookId() {
-        for (Channel channel : googleHouseMember.channels) {
-            if(channel.type.equalsIgnoreCase("facebook")) {
-                return channel.id;
-            }
-        }
-        return proPublicaHouseMember.getFacebookAccount();
+        String[] rankedFacebookIdSources = {getSocialMediaIdFromGoogle("facebook"), proPublicaHouseMember.getFacebookAccount()};
+        return bestAvailableSocialMediaId(rankedFacebookIdSources);
     }
 
     public String getYoutubeId() {
+        String[] rankedYoutubeIdSources = {getSocialMediaIdFromGoogle("youtube"), proPublicaHouseMember.getYoutubeId()};
+        return bestAvailableSocialMediaId(rankedYoutubeIdSources);
+    }
+
+    private String getSocialMediaIdFromGoogle(String socialMediaType) {
+        String channelId = "";
         for (Channel channel : googleHouseMember.channels) {
-            if(channel.type.equalsIgnoreCase("youtube")) {
-                return channel.id;
+            if(channel.type.equalsIgnoreCase(socialMediaType)) {
+                channelId = channel.id;
             }
         }
-        return proPublicaHouseMember.getYoutubeId();
+        return channelId;
     }
+
+    private String bestAvailableSocialMediaId(String[] rankedSocialMediaIdSources) {
+        for (String source: rankedSocialMediaIdSources) {
+            if(source == null){
+                continue;
+            }
+            if (!source.isEmpty()) {
+                return source;
+            }
+        }
+        return "Not Available";
+    }
+
 }
