@@ -1,6 +1,9 @@
 package com.civilservants.model;
 
+import com.civilservants.helpers.HouseMemberHelperClass;
+import com.civilservants.model.api.google.Address;
 import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
+import com.civilservants.model.api.google.Official;
 import com.civilservants.model.api.proPublica.ProPublicaHouseMember;
 import com.civilservants.service.GoogleApiCalls;
 import com.civilservants.service.ProPublicaApiCalls;
@@ -12,32 +15,39 @@ import lombok.Setter;
 public class HouseMember {
 
     private UserAddress userAddress;
-    private DistrictCode districtCode;
+    private String districtCode;
+    private HouseMemberHelperClass helperClass;
     private String firstName;
     private String lastName;
     private String role;
+    private String photoUrl;
     private String nextElection;
+    private String phoneNumber;
+    private Address officeAddress;
+    private String twitterId;
+    private String facebookId;
+    private String youtubeId;
+
 
     public HouseMember(UserAddress userAddress, DistrictCode districtCode) {
         this.userAddress = userAddress;
-        this.districtCode = districtCode;
-        fetchGoogleHouseMember();
-        fetchProPublicaHouseMember();
+        this.districtCode = districtCode.getCode();
+        this.helperClass = new HouseMemberHelperClass(userAddress, districtCode.getCode());
+
+        this.firstName = helperClass.getFirstName();
+        this.lastName = helperClass.getLastName();
+        this.photoUrl = helperClass.getPhoto();
+        this.phoneNumber = helperClass.getPhoneNumber();
+        this.officeAddress = helperClass.getOfficeAddress();
+
+        this.role = helperClass.getRole();
+        this.nextElection = helperClass.getNextElection();
+        this.twitterId = helperClass.getTwitterId();
+        this.facebookId = helperClass.getFacebookId();
+        this.youtubeId = helperClass.getYoutubeId();
     }
 
-    public void fetchGoogleHouseMember(){
-        GoogleApiCalls googleApiCalls = new GoogleApiCalls();
-        GoogleApiRepresentativesModel googleApiRepresentativesModel = googleApiCalls.getGoogleApiRepresentativesModel(userAddress.getStreetAddress(), userAddress.getZipCode());
-        String firstName = googleApiRepresentativesModel.officials.get(4).name.split(" ")[0];
-        String lastName = googleApiRepresentativesModel.officials.get(4).name.split(" ")[1];
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public void fetchProPublicaHouseMember(){
-        ProPublicaApiCalls proPublicaApiCalls = new ProPublicaApiCalls();
-        ProPublicaHouseMember proPublicaHouseMember = proPublicaApiCalls.getPropublicaApiRepresentativesModel(userAddress.getState(), districtCode.getDistrictCode());
-        this.role = proPublicaHouseMember.getRole();
-        this.nextElection = proPublicaHouseMember.getNextElection();
+    public String titleAndFullName(){
+        return getRole() + " " + getFirstName() + " " + getLastName();
     }
 }

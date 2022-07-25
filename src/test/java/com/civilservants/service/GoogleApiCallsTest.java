@@ -1,5 +1,6 @@
 package com.civilservants.service;
 
+import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

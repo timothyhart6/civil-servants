@@ -5,22 +5,81 @@
     <title>User's District</title>
 </head>
 <body>
-    <h1>User's District</h1>
-    <h3>Street Address</h3>
-    <p th:text="${district.userAddress.getStreetAddress()}"></p>
-    <h3>City</h3>
-    <p th:text="${district.userAddress.getCity()}"></p>
-    <h3>State</h3>
-    <p th:text="${district.userAddress.getState()}"></p>
-    <h3>Zip Code</h3>
-    <p th:text="${district.userAddress.getZipCode()}"></p>
-    <h3>District Code</h3>
-    <p th:text="${district.districtCode.getDistrictCode()}"></p>
+    <div id="house-member">
+        <div id="heading">
+            <h5>Representative for:
+                <span th:text="${district.userAddress.getStreetAddress()}"></span>
+                <span th:text="${district.userAddress.getCity()}"></span>
+                <span th:text="${district.userAddress.getState()}"></span>
+                <span th:text="${district.userAddress.getZipCode()}"></span>
+            </h5>
+            <h5>Your district code is:
+                <span th:text="${district.houseMember.getDistrictCode()}"></span>
+            </h5>
 
-    <h3>House Member First Name: </h3>
-    <p th:text="${district.houseMember.getFirstName()}"></p>
-    <h3>House Member Last Name: </h3>
-    <p th:text="${district.houseMember.getLastName()}"></p>
+            <h1>
+                <span th:text="${district.houseMember.titleAndFullName()}"></span>
+                <span>(need to get photo)</span>
+            </h1>
+            <p>User Address and district code</p>
+        </div>
+        <div id="contact-info">
+            <h2>Contact Info</h2>
+            <ul>
+                <li>Phone: <span th:text="${district.houseMember.getPhoneNumber()}"></span></li>
+                <li>Office Address: <br>
+                    <span th:text="${district.houseMember.getOfficeAddress().line1}"></span><br>
+                    <span th:text="${district.houseMember.getOfficeAddress().city}"></span>
+                    <span th:text="${district.houseMember.getOfficeAddress().state}"></span><br>
+                    <span th:text="${district.houseMember.getOfficeAddress().zip}"></span>
+                </li>
+            </ul>
+        </div>
+        <div id="social-media">
+            <h2>Social Media</h2>
+            <ul>
+                <li>Twitter: <span th:text="${district.houseMember.getTwitterId()}"></span></li>
+                <li>Facebook: <span th:text="${district.houseMember.getFacebookId()}"></span></li>
+                <li>Youtube: <span th:text="${district.houseMember.getYoutubeId()}"></span></li>
+            </ul>
+        </div>
+        <div id="bill-voting-data">
+            <h2>Bill Voting history</h2>
+            <ul>
+                <li>(Template)Bill Title</li>
+                <li>(Template)Bill Summary</li>
+                <li>(Template)Bill Vote</li>
+                <li>(Template)Bill Vote Explaination</li>
+                <li>(Template)Bill Details (maybe a hyperlink?)</li>
+            </ul>
+        </div>
+        <div id="financing">
+            <h2>Financing</h2>
+            <div id="campaign-financing">
+                <h3>Campaign Financing</h3>
+                <ul>
+                    <li>Total funding raised</li>
+                    <li>Total funding spent</li>
+                    <li>Financial donations breakdown (maybe a graph?)</li>
+                </ul>
+            </div>
+            <div id="office-spending">
+                <h3>Office Spending</h3>
+                <ul>
+                    <li>Total office budget</li>
+                    <li> total spent</li>
+                </ul>
+            </div>
+        </div>
+        <div id="next-election">
+            <h2>Next Election</h2>
+            <ul>
+                <li>Running in next election: </li>
+                <li>Election Date: </li>
+                <li>Your voting location (if voting): </li>
+            </ul>
+        </div>
+    </div>
 
     <h3>House Member Role: </h3>
     <p th:text="${district.houseMember.getRole()}"></p>
