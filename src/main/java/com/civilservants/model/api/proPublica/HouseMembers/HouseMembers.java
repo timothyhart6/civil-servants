@@ -1,4 +1,4 @@
-package com.civilservants.model.api.proPublica;
+package com.civilservants.model.api.proPublica.HouseMembers;
 
 import java.util.ArrayList;
 import java.util.List;
