@@ -4,9 +4,15 @@ import com.civilservants.model.api.google.Address;
 import com.civilservants.model.api.google.Channel;
 import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
 import com.civilservants.model.api.google.Official;
-import com.civilservants.model.api.proPublica.ProPublicaHouseMember;
+import com.civilservants.model.api.proPublica.bills.PropublicaBill;
+import com.civilservants.model.api.proPublica.HouseMembers.ProPublicaHouseMember;
+import com.civilservants.model.api.proPublica.votes.recentVotes.Vote;
+import com.civilservants.model.api.proPublica.votes.specificRollCallVote.Votes;
 import com.civilservants.service.GoogleApiCalls;
-import com.civilservants.service.ProPublicaApiCalls;
+import com.civilservants.service.ProPublicaCongressApiCalls;
+import com.civilservants.service.PropublicaVotesApiCalls;
+
+import java.util.ArrayList;
 
 public class HouseMemberHelperClass {
 
@@ -15,6 +21,7 @@ public class HouseMemberHelperClass {
     private Official googleHouseMember;
     private ProPublicaHouseMember proPublicaHouseMember;
 
+
     public HouseMemberHelperClass(UserAddress userAddress, String districtCode) {
         this.userAddress = userAddress;
         this.districtCode = districtCode;
@@ -22,17 +29,32 @@ public class HouseMemberHelperClass {
         this.proPublicaHouseMember = fetchProPublicaHouseMember();
     }
 
-    public Official fetchGoogleHouseMember() {
+    private Official fetchGoogleHouseMember() {
         GoogleApiCalls googleApiCalls = new GoogleApiCalls();
         GoogleApiRepresentativesModel googleApiRepresentativesModel = googleApiCalls.getGoogleApiRepresentativesModel(userAddress.getStreetAddress(), userAddress.getZipCode());
         return googleApiRepresentativesModel.officials.get(4);
     }
 
     public ProPublicaHouseMember fetchProPublicaHouseMember() {
-        ProPublicaApiCalls proPublicaApiCalls = new ProPublicaApiCalls();
+        ProPublicaCongressApiCalls proPublicaApiCalls = new ProPublicaCongressApiCalls();
         return proPublicaApiCalls.getPropublicaApiRepresentativesModel(userAddress.getState(), districtCode);
     }
 
+    public ArrayList<PropublicaBill> fetchProPublicaRecentBills() {
+        ProPublicaCongressApiCalls proPublicaApiCalls = new ProPublicaCongressApiCalls();
+        return proPublicaApiCalls.getRecentBills();
+    }
+
+    public ArrayList<Vote> fetchPropublicaRecentVotes(String chamber) {
+        PropublicaVotesApiCalls votesApiCalls = new PropublicaVotesApiCalls();
+        return votesApiCalls.getRecentVotes(chamber);
+    }
+    public Votes fetchPropublicaSpecificRollCallVotes(String congress, String chamber, String sessionNumber, String rollCallNumber) {
+        PropublicaVotesApiCalls votesApiCalls = new PropublicaVotesApiCalls();
+        return votesApiCalls.getSpecificRollCallVotes(congress, chamber, sessionNumber, rollCallNumber);
+    }
+
+    public String getMemberId() { return proPublicaHouseMember.getId(); }
     public String getFirstName() {
         return  googleHouseMember.name.split(" ")[0];
     }
@@ -66,7 +88,6 @@ public class HouseMemberHelperClass {
         return bestAvailableSocialMediaId(rankedTwitterIdSources);
     }
 
-
     public String getFacebookId() {
         String[] rankedFacebookIdSources = {getSocialMediaIdFromGoogle("facebook"), proPublicaHouseMember.getFacebookAccount()};
         return bestAvailableSocialMediaId(rankedFacebookIdSources);
@@ -98,5 +119,4 @@ public class HouseMemberHelperClass {
         }
         return "Not Available";
     }
-
 }

@@ -1,4 +1,4 @@
-package com.civilservants.model.api.proPublica;
+package com.civilservants.model.api.proPublica.HouseMembers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
