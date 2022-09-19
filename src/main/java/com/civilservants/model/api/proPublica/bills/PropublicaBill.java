@@ -6,7 +6,7 @@ import java.util.ArrayList;
 // import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 /* ObjectMapper om = new ObjectMapper();
 Root root = om.readValue(myJsonString, Root.class); */
-public class Bill {
+public class PropublicaBill {
     public String bill_id;
     public String bill_slug;
     public String bill_type;
@@ -40,4 +40,5 @@ public class Bill {
     public String summary_short;
     public String latest_major_action_date;
     public String latest_major_action;
+
 }

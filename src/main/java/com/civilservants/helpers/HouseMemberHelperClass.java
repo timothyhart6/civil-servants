@@ -4,7 +4,7 @@ import com.civilservants.model.api.google.Address;
 import com.civilservants.model.api.google.Channel;
 import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
 import com.civilservants.model.api.google.Official;
-import com.civilservants.model.api.proPublica.bills.Bill;
+import com.civilservants.model.api.proPublica.bills.PropublicaBill;
 import com.civilservants.model.api.proPublica.HouseMembers.ProPublicaHouseMember;
 import com.civilservants.model.api.proPublica.votes.recentVotes.Vote;
 import com.civilservants.model.api.proPublica.votes.specificRollCallVote.Votes;
@@ -40,7 +40,7 @@ public class HouseMemberHelperClass {
         return proPublicaApiCalls.getPropublicaApiRepresentativesModel(userAddress.getState(), districtCode);
     }
 
-    public ArrayList<Bill> fetchProPublicaRecentBills() {
+    public ArrayList<PropublicaBill> fetchProPublicaRecentBills() {
         ProPublicaCongressApiCalls proPublicaApiCalls = new ProPublicaCongressApiCalls();
         return proPublicaApiCalls.getRecentBills();
     }
@@ -118,18 +118,5 @@ public class HouseMemberHelperClass {
             }
         }
         return "Not Available";
-    }
-
-    public ArrayList<Bill> getRecentBillVotes() {
-        ArrayList<Bill> recentBills = fetchProPublicaRecentBills();
-        ArrayList<Vote> recentVotes = fetchPropublicaRecentVotes("House");
-        Votes votes = fetchPropublicaSpecificRollCallVotes("117", "house", "2", String.valueOf(recentVotes.get(0).roll_call)); //TODO remove hardcoding
-        //iterate through recentBills
-            //For each bill, search for rollcall (of specific rep)
-            //add both bill info and rollcall info (vote, etc) to new class
-            //add to a new arraylist of the new class with the aggregated data
-            //return new arraylist
-
-        return recentBills;
     }
 }

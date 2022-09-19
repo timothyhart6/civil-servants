@@ -1,16 +1,15 @@
 package com.civilservants.service;
 
-import com.civilservants.model.api.proPublica.HouseMembers.PropublicaHouseMembers;
 import com.civilservants.model.api.proPublica.votes.recentVotes.RecentVotes;
 import com.civilservants.model.api.proPublica.votes.recentVotes.Vote;
 import com.civilservants.model.api.proPublica.votes.specificRollCallVote.SpecificRollCallVote;
 import com.civilservants.model.api.proPublica.votes.specificRollCallVote.Votes;
-import com.civilservants.secrets.APIKeyStore;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import com.civilservants.secrets.APIKeyStore;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package com.civilservants.service;
 
-import com.civilservants.model.api.proPublica.bills.Bill;
+import com.civilservants.model.api.proPublica.bills.PropublicaBill;
 import com.civilservants.model.api.proPublica.bills.PropublicaBills;
 import com.civilservants.model.api.proPublica.HouseMembers.ProPublicaHouseMember;
 import com.civilservants.model.api.proPublica.HouseMembers.PropublicaHouseMembers;
@@ -28,7 +28,7 @@ public class ProPublicaCongressApiCalls {
         return response.getBody().getResults().get(0);
     }
 
-    public ArrayList<Bill> getRecentBills() {
+    public ArrayList<PropublicaBill> getRecentBills() {
         String url = "https://api.propublica.org/congress/v1/bills/search?sort=date";
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-API-Key", PROPUBLICA_API_KEY);

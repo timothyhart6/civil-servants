@@ -2,7 +2,6 @@ package com.civilservants.model;
 
 import com.civilservants.helpers.HouseMemberHelperClass;
 import com.civilservants.model.api.google.Address;
-import com.civilservants.model.api.proPublica.bills.Bill;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,7 +25,6 @@ public class HouseMember {
     private String twitterId;
     private String facebookId;
     private String youtubeId;
-    private ArrayList<Bill> recentBillVotes = new ArrayList<Bill>();
 
     public HouseMember(UserAddress userAddress, DistrictCode districtCode) {
         this.userAddress = userAddress;
@@ -45,8 +43,6 @@ public class HouseMember {
         this.twitterId = helperClass.getTwitterId();
         this.facebookId = helperClass.getFacebookId();
         this.youtubeId = helperClass.getYoutubeId();
-
-        this.recentBillVotes = helperClass.getRecentBillVotes();
     }
 
     public String titleAndFullName(){
