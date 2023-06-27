@@ -14,6 +14,7 @@ public class DistrictCode {
 
     private void setCode(String streetAddress, String zipCode) {
         GoogleApiCalls googleApiCalls = new GoogleApiCalls();
-        this.code = googleApiCalls.fetchDistrictCode(streetAddress, zipCode);
+        String code = googleApiCalls.fetchDistrictCode(streetAddress, zipCode);
+        this.code = code.replaceAll("[^\\d-]", "");
     }
 }
