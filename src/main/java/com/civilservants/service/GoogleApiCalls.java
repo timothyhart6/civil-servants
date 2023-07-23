@@ -1,9 +1,9 @@
 package com.civilservants.service;
 
-import com.civilservants.model.api.google.*;
+import com.civilservants.model.api.google.GoogleApiRepresentativesModel;
 import org.springframework.web.client.RestTemplate;
 
-        import java.util.HashMap;
+import java.util.HashMap;
 
 public class GoogleApiCalls {
 
@@ -32,7 +32,7 @@ public class GoogleApiCalls {
         try {
              googleRep = restTemplate.getForObject(googleRepresentativesUrl, GoogleApiRepresentativesModel.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Google Representaives call failed with message: " + e.getMessage());
         }
         return googleRep;
     }
