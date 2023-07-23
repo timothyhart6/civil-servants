@@ -14,7 +14,6 @@ public class DistrictCode {
 
     private void setCode(String streetAddress, String zipCode) {
         GoogleApiCalls googleApiCalls = new GoogleApiCalls();
-        String code = googleApiCalls.fetchDistrictCode(streetAddress, zipCode);
-        this.code = code;
+        this.code = googleApiCalls.fetchDistrictCode(streetAddress, zipCode);
     }
 }
