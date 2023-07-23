@@ -20,6 +20,7 @@ public class UserAddress {
     }
 
     private void setAddressInfo(){
+        //todo make this a bean
         GoogleApiCalls googleApiCalls = new GoogleApiCalls();
         HashMap<String, String> googleAddressAndDistrictInfo = googleApiCalls.fetchAddress(streetAddress, zipCode);
         this.city = googleAddressAndDistrictInfo.get("City");
