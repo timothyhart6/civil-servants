@@ -9,20 +9,29 @@ public class GoogleApiCalls {
 
     public HashMap<String, String> fetchAddress(String streetAddress, String zipCode){
         HashMap<String, String> address = new HashMap<>();
-        GoogleApiRepresentativesModel googleApiRepresentativesModel = getGoogleApiRepresentativesModel(streetAddress, zipCode);
+        try {
+            GoogleApiRepresentativesModel googleApiRepresentativesModel = getGoogleApiRepresentativesModel(streetAddress, zipCode);
 
-        address.put("StreetAddress", googleApiRepresentativesModel.normalizedInput.line1);
-        address.put("City", googleApiRepresentativesModel.normalizedInput.city);
-        address.put("State", googleApiRepresentativesModel.normalizedInput.state);
-        address.put("ZipCode", googleApiRepresentativesModel.normalizedInput.zip);
+            address.put("StreetAddress", googleApiRepresentativesModel.normalizedInput.line1);
+            address.put("City", googleApiRepresentativesModel.normalizedInput.city);
+            address.put("State", googleApiRepresentativesModel.normalizedInput.state);
+            address.put("ZipCode", googleApiRepresentativesModel.normalizedInput.zip);
+        } catch (NullPointerException e) {
+            System.out.println("Google Representaives Model is null. Check that address and zip code are valid.");
+        }
         return address;
     }
 
     public String fetchDistrictCode(String streetAddress, String zipCode) {
-        GoogleApiRepresentativesModel googleApiRepresentativesModel = getGoogleApiRepresentativesModel(streetAddress, zipCode);
-        String divisionID = googleApiRepresentativesModel.offices.get(3).divisionId;
-        String districtCode = divisionID.substring(divisionID.length() - 2);
-        return districtCode;
+        String districtCode = "";
+        try {
+            GoogleApiRepresentativesModel googleApiRepresentativesModel = getGoogleApiRepresentativesModel(streetAddress, zipCode);
+            String divisionID = googleApiRepresentativesModel.offices.get(3).divisionId;
+            districtCode = divisionID.substring(divisionID.length() - 2);
+        } catch (NullPointerException e) {
+            System.out.println("District Code is null. Check that address and zip code are valid.");
+        }
+        return districtCode.replaceAll("[^\\d-]", "");
     }
 
     public GoogleApiRepresentativesModel getGoogleApiRepresentativesModel(String address, String zipCode) {
