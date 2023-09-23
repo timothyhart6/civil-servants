@@ -4,6 +4,7 @@ import com.civilservants.model.api.proPublica.votes.recentVotes.RecentVotes;
 import com.civilservants.model.api.proPublica.votes.recentVotes.Vote;
 import com.civilservants.model.api.proPublica.votes.specificRollCallVote.SpecificRollCallVote;
 import com.civilservants.model.api.proPublica.votes.specificRollCallVote.Votes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,7 +14,7 @@ import com.civilservants.secrets.APIKeyStore;
 
 import java.util.ArrayList;
 
-
+@Slf4j
 public class PropublicaVotesApiCalls {
 
     private static final String PROPUBLICA_API_KEY = APIKeyStore.getKey("PROPUBLICA_API");
@@ -29,7 +30,7 @@ public class PropublicaVotesApiCalls {
 
             response = restTemplate.exchange(url, HttpMethod.GET, entity, RecentVotes.class);
         } catch(Exception e) {
-            System.out.println("Propublica RecentVotes call failed with message: " + e.getMessage());
+            log.info("Propublica RecentVotes call failed with message: " + e.getMessage());
         }
         return response.getBody().results.votes;
     }
@@ -44,7 +45,7 @@ public class PropublicaVotesApiCalls {
             RestTemplate restTemplate = new RestTemplate();
             response = restTemplate.exchange(url, HttpMethod.GET, entity, SpecificRollCallVote.class);
         } catch (Exception e) {
-            System.out.println("Propublica RollCall call failed with message: " + e.getMessage());
+            log.info("Propublica RollCall call failed with message: " + e.getMessage());
         }
         return response.getBody().results.votes;
     }
